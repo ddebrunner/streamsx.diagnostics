@@ -1,0 +1,18 @@
+/*
+# Licensed Materials - Property of IBM
+# Copyright IBM Corp. 2016
+*/
+namespace com.ibm.streamsx.diagnostics.apps ;
+
+use com.ibm.streamsx.diagnostics.ops::JavaEnvironment ;
+
+public composite SystemInfo
+{
+	graph
+	@parallel(width=(int32) getSubmissionTimeValue("NumberHosts"))
+		() as JavaEnv = JavaEnvironment() {
+		config
+		   placement: hostExlocation("jvmemv");
+		}
+}
+
