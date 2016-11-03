@@ -19,8 +19,7 @@ import com.ibm.streams.operator.version.Product;
 /**
  */
 @PrimitiveOperator(
-description="Java Operator JavaEnvironment"
-/*vmArgs={"-Xmx2G", "-Ddan.test=WatsonWest"}*/)
+description="Dumps to standard out information about the Java PE environment.")
 public class JavaEnvironment extends AbstractOperator {
 	
 	private static final Logger trace = Logger.getLogger(JavaEnvironment.class.getName());

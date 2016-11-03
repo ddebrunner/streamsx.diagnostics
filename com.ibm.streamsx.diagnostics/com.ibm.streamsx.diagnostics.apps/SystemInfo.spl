@@ -6,10 +6,20 @@ namespace com.ibm.streamsx.diagnostics.apps ;
 
 use com.ibm.streamsx.diagnostics.ops::JavaEnvironment ;
 
-public composite SystemInfo
+/**
+ * Application provides infomation about the environment
+ * seen by operators in an application.
+ * 
+ * Has a single submission time parameter `NumberResources`
+ * to specify the number of resources (hosts) in the Streams instance.
+ * This ensures a copy of each operator (currently one)
+ * executes on each host in the cluster. This then allows
+ * checking of the application environment for each resource.
+ */
+public composite ApplicationEnvironment
 {
 	graph
-	@parallel(width=(int32) getSubmissionTimeValue("NumberHosts"))
+	@parallel(width=(int32) getSubmissionTimeValue("NumberResources"))
 		() as JavaEnv = JavaEnvironment() {
 		config
 		   placement: hostExlocation("jvmemv");
